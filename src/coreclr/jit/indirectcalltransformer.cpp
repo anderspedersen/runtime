@@ -302,9 +302,10 @@ private:
         {
             BasicBlock* block = m_compiler->fgNewBBafter(jumpKind, insertAfter, true);
             block->SetFlags(BBF_IMPORTED);
+            block->RemoveFlags(BBF_INTERNAL);
             if (flagsSource != nullptr)
             {
-                block->CopyFlags(flagsSource, BBF_SPLIT_GAINED);
+                block->CopyFlags(flagsSource, BBF_SPLIT_GAINED | BBF_INTERNAL);
             }
             block->RemoveFlags(BBF_DONT_REMOVE);
             return block;
